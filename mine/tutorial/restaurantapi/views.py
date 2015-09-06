@@ -6,9 +6,9 @@ from rest_framework.permissions import IsAdminUser
 from serializers import UserSerializer, GroupSerializer
 from serializers import MenuSerializer, MenuItemSerializer
 
-# # for custom GET of available menu list
-# from rest_framework import mixins
-# from rest_framework import generics
+# for custom GET of available menu list
+from rest_framework import mixins
+from rest_framework import generics
 #
 # # for custom GET of available menu details
 # from django.http import Http404
@@ -47,15 +47,14 @@ from serializers import MenuSerializer, MenuItemSerializer
 #
 # 		raise ForbiddenAccess
 #
-# class AvailableMenuList(mixins.ListModelMixin, generics.GenericAPIView):
-#
-# 	permission_classes = ()
-# 	queryset = Menu.objects.filter(available=True)
-# 	serializer_class = MenuSerializer
-#
-# 	def get(self, request, *args, **kwargs):
-#
-# 		return self.list(request, *args, **kwargs)
+class AvailableMenuList(mixins.ListModelMixin, generics.GenericAPIView):
+
+	permission_classes = ()
+	queryset = Menu.objects.filter(available=True)
+	serializer_class = MenuSerializer
+
+	def get(self, request, *args, **kwargs):
+		return self.list(request, *args, **kwargs)
 
 class UserViewSet(viewsets.ModelViewSet):
 	# Only admin sees/edits this

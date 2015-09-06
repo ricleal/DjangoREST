@@ -40,3 +40,6 @@ http://localhost:8000/user/
 
 For XML renderers
 http://localhost:8000/?format=xml
+
+See available menus
+http://localhost:8000/available_menus/
