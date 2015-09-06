@@ -1,5 +1,9 @@
 from django.contrib.auth.models import User
+from django.core.validators import validate_slug
 from django.db import models
+from .validators import validate_acceptable_cost_to_make
+
+# Create your models here.
 
 
 class Menu(models.Model):
@@ -16,9 +20,12 @@ class Menu(models.Model):
 
 class MenuItem(models.Model):
 
-    name = models.CharField(max_length=32, unique=True)
+    # validate
+    name = models.CharField(max_length=32, unique=True,
+                            validators=[validate_slug])
     description = models.CharField(max_length=200)
-    cost_to_make = models.DecimalField(decimal_places=2, max_digits=5)
+    cost_to_make = models.DecimalField(decimal_places=2, max_digits=5,
+                                       validators=[validate_acceptable_cost_to_make])
     sale_price = models.DecimalField(decimal_places=2, max_digits=5)
     available = models.BooleanField(default=False)
     menu = models.ForeignKey(Menu)
