@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from django.shortcuts import render
 from models import Menu, MenuItem
 from rest_framework import viewsets
-#from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser
 from serializers import UserSerializer, GroupSerializer
 from serializers import MenuSerializer, MenuItemSerializer
 
@@ -58,15 +58,15 @@ from serializers import MenuSerializer, MenuItemSerializer
 # 		return self.list(request, *args, **kwargs)
 
 class UserViewSet(viewsets.ModelViewSet):
-
-#	permission_classes = (IsAdminUser,)
+	# Only admin sees/edits this
+	permission_classes = (IsAdminUser,)
 
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 
 class GroupViewSet(viewsets.ModelViewSet):
-
-#	permission_classes = (IsAdminUser,)
+	# Only admin sees/edits this
+	permission_classes = (IsAdminUser,)
 
 	queryset = Group.objects.all()
 	serializer_class = GroupSerializer

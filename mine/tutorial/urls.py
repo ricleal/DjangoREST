@@ -20,8 +20,13 @@ from restaurantapi.views import UserViewSet, GroupViewSet,\
     MenuViewSet, MenuItemViewSet
 #from restaurantapi.views import AvailableMenuList, AvailableMenuDetail
 
-router = routers.DefaultRouter()
 
+# This will work for the rest api:
+#     "user": "http://localhost:8000/user/",
+#     "group": "http://localhost:8000/group/",
+#     "menu": "http://localhost:8000/menu/",
+#     "menuitem": "http://localhost:8000/menuitem/"
+router = routers.DefaultRouter()
 router.register(r'user', UserViewSet)
 router.register(r'group', GroupViewSet)
 router.register(r'menu', MenuViewSet)
