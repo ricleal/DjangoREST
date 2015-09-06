@@ -105,17 +105,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 ## Rest:
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
-    # 'DEFAULT_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.JSONRenderer', # default renderer
-    #     'rest_framework.renderers.BrowsableAPIRenderer', # default renderer
-    #     'rest_framework_xml.renderers.XMLRenderer',
-    # ),
-    # 'DEFAULT_PARSER_CLASSES': (
-    #     'rest_framework.parsers.JSONParser', # default parser
-    #     'rest_framework.parsers.FormParser', # default parser
-    #     'rest_framework.parsers.MultiPartParser', # default parser
-    #     'rest_framework_xml.parsers.XMLRenderer',
-    # ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer', # default renderer
+        'rest_framework.renderers.BrowsableAPIRenderer', # default renderer
+        'rest_framework_xml.renderers.XMLRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser', # default parser
+        'rest_framework.parsers.FormParser', # default parser
+        'rest_framework.parsers.MultiPartParser', # default parser
+        'rest_framework_xml.parsers.XMLParser',
+    ),
 }
