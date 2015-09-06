@@ -9,73 +9,75 @@ from serializers import MenuSerializer, MenuItemSerializer
 # for custom GET of available menu list
 from rest_framework import mixins
 from rest_framework import generics
-#
-# # for custom GET of available menu details
-# from django.http import Http404
-# from rest_framework.exceptions import APIException
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
+
+# for custom GET of available menu details
+from django.http import Http404
+from rest_framework.exceptions import APIException
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
-# class ForbiddenAccess(APIException):
-# 	status_code = 403
-# 	default_detail = 'Action Forbidden'
-#
-# class AvailableMenuDetail(APIView):
-#
-# 	permission_classes = ()
-#
-# 	def get_object(self, pk):
-# 		try:
-# 			return Menu.objects.get(pk=pk, available=True)
-#
-# 		except Menu.DoesNotExist:
-# 			raise Http404
-#
-# 	def get(self, request, pk, format=None):
-# 		menu = self.get_object(pk)
-#
-# 		serializer = MenuSerializer(menu, context={'request':request})
-#
-# 		return Response(serializer.data)
-#
-# 	def put(self, request, pk, format=None):
-#
-# 		raise ForbiddenAccess
-#
-# 	def delete(self, request, pk, format=None):
-#
-# 		raise ForbiddenAccess
-#
+class ForbiddenAccess(APIException):
+    status_code = 403
+    default_detail = 'Action Forbidden'
+
+
+class AvailableMenuDetail(APIView):
+	'''
+	Customised detail version for detail of available menus
+	'''
+    permission_classes = ()
+
+    def get_object(self, pk):
+        try:
+            return Menu.objects.get(pk=pk, available=True)
+        except Menu.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        menu = self.get_object(pk)
+        serializer = MenuSerializer(menu, context={'request': request})
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        raise ForbiddenAccess
+
+    def delete(self, request, pk, format=None):
+        raise ForbiddenAccess
+
+
 class AvailableMenuList(mixins.ListModelMixin, generics.GenericAPIView):
 
-	permission_classes = ()
-	queryset = Menu.objects.filter(available=True)
-	serializer_class = MenuSerializer
+    permission_classes = ()
+    queryset = Menu.objects.filter(available=True)
+    serializer_class = MenuSerializer
 
-	def get(self, request, *args, **kwargs):
-		return self.list(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
 
 class UserViewSet(viewsets.ModelViewSet):
-	# Only admin sees/edits this
-	permission_classes = (IsAdminUser,)
+    # Only admin sees/edits this
+    permission_classes = (IsAdminUser,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-	queryset = User.objects.all()
-	serializer_class = UserSerializer
 
 class GroupViewSet(viewsets.ModelViewSet):
-	# Only admin sees/edits this
-	permission_classes = (IsAdminUser,)
+    # Only admin sees/edits this
+    permission_classes = (IsAdminUser,)
 
-	queryset = Group.objects.all()
-	serializer_class = GroupSerializer
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
 
 class MenuViewSet(viewsets.ModelViewSet):
 
-	queryset = Menu.objects.all()
-	serializer_class = MenuSerializer
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+
 
 class MenuItemViewSet(viewsets.ModelViewSet):
 
-	queryset = MenuItem.objects.all()
-	serializer_class = MenuItemSerializer
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer

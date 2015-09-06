@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework import routers
 from restaurantapi.views import UserViewSet, GroupViewSet,\
     MenuViewSet, MenuItemViewSet
-from restaurantapi.views import AvailableMenuList #, AvailableMenuDetail
+from restaurantapi.views import AvailableMenuList, AvailableMenuDetail
 
 
 # This will work for the rest api:
@@ -44,6 +44,6 @@ urlpatterns = patterns('',
                                    namespace='rest_framework')),
                        url(r'^available_menus/$',
                            AvailableMenuList.as_view()),
-                    #    url(r'^available_menus/(?P<pk>[0-9]+)/$',
-                    #        AvailableMenuDetail.as_view()),
+                       url(r'^available_menus/(?P<pk>[0-9]+)/$',
+                           AvailableMenuDetail.as_view()),
                        )
