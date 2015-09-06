@@ -1,2 +1,4 @@
 django==1.8.4
 djangorestframework==3.2.2
+# For Ipython shell plus: python manage.py shell_plus
+django_extensions
