@@ -33,3 +33,7 @@ python manage.py runserver --noreload # no reload changes
 
 
 ```
+
+Once REST api running do:
+http://localhost:8000/
+http://localhost:8000/user/
