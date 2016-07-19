@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from models import Menu, MenuItem
+from .models import Menu, MenuItem
 from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -46,4 +46,3 @@ class MenuItemSerializer(serializers.HyperlinkedModelSerializer):
 		model = MenuItem
 		fields = ('url', 'name', 'description', 'cost_to_make',
 			'sale_price', 'available', 'menu')
-

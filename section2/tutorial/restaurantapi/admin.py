@@ -13,3 +13,5 @@ class MenuItemAdmin(admin.ModelAdmin):
 	list_display = ['id', 'name', 'description', 'cost_to_make',
 		'sale_price', 'available', 'menu']
 
+admin.site.register(Menu, MenuAdmin)
+admin.site.register(MenuItem, MenuItemAdmin)

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.validators import validate_slug
 from django.db import models
-from validators import validate_acceptable_cost_to_make
+from .validators import validate_acceptable_cost_to_make
 
 # Create your models here.
 
@@ -12,7 +12,7 @@ class Menu(models.Model):
 	chef = models.ForeignKey(User)
 	available = models.BooleanField(default=False)
 
-	def __unicode__(self):
+	def __str__(self):
 		return u'%s by %s %s' % (self.name, self.chef.first_name, self.chef.last_name)
 
 class MenuItem(models.Model):
@@ -26,7 +26,5 @@ class MenuItem(models.Model):
 	available = models.BooleanField(default=False)
 	menu = models.ForeignKey(Menu)
 
-	def __unicode__(self):
+	def __str__(self):
 		return u'%s' % (self.name)
-
-		

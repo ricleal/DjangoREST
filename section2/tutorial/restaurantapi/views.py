@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render
-from models import Menu, MenuItem
+from .models import Menu, MenuItem
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
-from serializers import UserSerializer, GroupSerializer
-from serializers import MenuSerializer, MenuItemSerializer
+from .serializers import UserSerializer, GroupSerializer
+from .serializers import MenuSerializer, MenuItemSerializer
 
 # for custom GET of available menu list
 from rest_framework import mixins
@@ -13,14 +13,14 @@ from rest_framework import generics
 # for custom GET of available menu details
 from django.http import Http404
 from rest_framework.exceptions import APIException
-from rest_framework.response import Response 
-from rest_framework.views import APIView 
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # Create your views here.
 
 class ForbiddenAccess(APIException):
 	status_code = 403
-	default_detail = 'Action Forbidden'  
+	default_detail = 'Action Forbidden'
 
 class AvailableMenuDetail(APIView):
 
@@ -42,11 +42,11 @@ class AvailableMenuDetail(APIView):
 
 	def put(self, request, pk, format=None):
 
-		raise ForbiddenAccess 
+		raise ForbiddenAccess
 
 	def delete(self, request, pk, format=None):
 
-		raise ForbiddenAccess  
+		raise ForbiddenAccess
 
 class AvailableMenuList(mixins.ListModelMixin, generics.GenericAPIView):
 
