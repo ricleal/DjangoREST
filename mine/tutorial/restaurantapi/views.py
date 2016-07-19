@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render
-from models import Menu, MenuItem
+from .models import Menu, MenuItem
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
-from serializers import UserSerializer, GroupSerializer
-from serializers import MenuSerializer, MenuItemSerializer
+from .serializers import UserSerializer, GroupSerializer
+from .serializers import MenuSerializer, MenuItemSerializer
 
 # for custom GET of available menu list
 from rest_framework import mixins
@@ -23,9 +23,10 @@ class ForbiddenAccess(APIException):
 
 
 class AvailableMenuDetail(APIView):
-	'''
-	Customised detail version for detail of available menus
-	'''
+    '''
+    Customised detail version for detail of available menus
+    '''
+
     permission_classes = ()
 
     def get_object(self, pk):
