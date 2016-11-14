@@ -39,7 +39,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class MenuSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Menu
-		fields = ('url', 'name', 'description', 'chef', 'available')
+		fields = ('url', 'name', 'description', 'available')
+		#fields = '__all__'
 
 class MenuItemSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
