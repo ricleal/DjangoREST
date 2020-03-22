@@ -14,7 +14,7 @@ class MenuAdmin(admin.ModelAdmin):
 
 
 class MenuItemAdmin(admin.ModelAdmin):
-    #pass
+    # pass
     # Collumns to display in the admin interface when listing all entries
     list_display = ['id', 'name', 'description', 'cost_to_make',
                     'sale_price', 'available', 'menu']

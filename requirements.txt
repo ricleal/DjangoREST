@@ -1,5 +1,6 @@
-django>=1.9.8
-djangorestframework>=3.4.0
+django
+djangorestframework
 # For Ipython shell plus: python manage.py shell_plus
 django_extensions
 djangorestframework-xml
+ipython

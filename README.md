@@ -1,28 +1,27 @@
-# drf-restaurant-api
-
-Updated for DjangoCon 2015
-
-
-
-# Root folder original from DjangoCon 2015
+# DRF example
 
 ```
-virtualenv with interpreter /usr/local/bin/python3
+virtualenv env
 source env/bin/activate
-pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-# Folders
+```
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
 
-## Section 1
+First login into the admin API.
 
-tutorial part 1
+Then:
 
-## Section 2
+Once REST api running do:
+http://localhost:8000/
+http://localhost:8000/user/
 
-tutorial part 2
+For XML renderers
+http://localhost:8000/?format=xml
 
-## Mine
-
-My tests...
+See available menus
+http://localhost:8000/available_menus/
